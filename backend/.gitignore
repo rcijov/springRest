@@ -1,1 +1,8 @@
 target/*
+.gradle
+.idea
+.settings
+.vscode
+.classpath
+.project
+bin/
