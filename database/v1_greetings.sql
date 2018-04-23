@@ -4,5 +4,5 @@
 
 CREATE TABLE greetings(
  id serial PRIMARY KEY,
- content VARCHAR (50) UNIQUE NOT NULL
+ content VARCHAR (300) NOT NULL
 );
