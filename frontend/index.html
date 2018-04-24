@@ -1,0 +1,71 @@
+<!doctype html>
+<html ng-app>
+<head>
+  <title>Products</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/toastr.css">
+  <link rel="stylesheet" href="css/application.css">
+</head>
+<body>
+  <div class="container" ng-controller="listController">
+
+    <div class="row">
+      <div class="page-header">
+        <div class="span9">
+          <h1>List of products</h1>
+        </div>
+        <div class="span3">
+          <input type="search" ng-model="search" placeholder="Search for...">
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <table id="lista-compras" class="table table-striped">
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Image Url</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="item in itens | filter:search" class="comprado-{{ item.comprado }}">
+            <td>{{ item.id }}</td>
+            <td>{{ item.description }}</td>
+            <td>{{ item.price }}</td>
+            <td>{{ item.imageUrl }}</td>
+            <td>
+              <button class="btn btn-warning btn-small" ng-click="editItem($index)">
+                <i class="icon-pencil icon-white"></i> edit
+              </button>
+              <button class="btn btn-danger btn-small" ng-click="deleteItem($index)">
+                <i class="icon-trash icon-white"></i> delete
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <form class="row form-inline" name="validateValuesForm">
+      <input type="text" ng-model="item.id" placeholder="Id" disabled>
+      <input type="text" ng-model="item.description" placeholder="Description" required>
+      <input type="number" ng-model="item.price" placeholder="Price" required>
+      <input type="text" ng-model="item.imageUrl" placeholder="Image Url" required>
+      <button ng-hide="edit" class="btn btn-success" ng-disabled="validateValuesForm.$invalid" ng-click="addItem()">
+        <i class="icon-plus icon-white"></i> add
+      </button>
+      <button ng-show="edit" class="btn btn-success" ng-disabled="validateValuesForm.$invalid" ng-click="applyChanges()">
+        <i class="icon-ok icon-white"></i> save
+      </button>
+    </form>
+  </div>
+  <script src="lib/jquery.min.js"></script>
+  <script src="lib/angular.min.js"></script>
+  <script src="lib/toastr.min.js"></script>
+  <script src="app/controllers.js"></script>
+</body>
+</html>

@@ -41,7 +41,7 @@ public class ProductController {
         return new ResponseEntity(null, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/product", method = RequestMethod.PATCH)
+    @RequestMapping(value = "/product", method = RequestMethod.PUT)
     public ResponseEntity<Product> updateProduct(@RequestBody Product product){
         return new ResponseEntity(productService.saveOrUpdateProductForm(product), HttpStatus.OK);
     }
